@@ -1,0 +1,56 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Linux system files
+*~
+
+# Ignore Vim swap files
+*.swp
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+
+# Ignore compiled binaries
+*.out
+
+# Ignore archives
+*.tar.gz
+*.zip
+*.rar
+
+# Ignore Python bytecode
+__pycache__/
+*.py[cod]
+
+# Ignore Node.js modules (if applicable)
+node_modules/
+
+# Ignore JetBrains IDEs settings
+.idea/
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore environment variable files
+.env
+.env.*
+
+# Ignore secrets
+secrets/
+*.key
+*.pem
+*.crt
+
+# Ignore SSH keys
+*.pub
+*.private
+*.pem
+*.id_rsa
+*.id_rsa.pub
+
+# Ignore credentials
+credentials/
+*.cred

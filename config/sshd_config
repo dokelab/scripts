@@ -1,0 +1,32 @@
+# OMAHOLE sshd_config
+# /etc/ssh/sshd_config
+
+Include /etc/ssh/sshd_config.d/*.conf
+
+PermitRootLogin prohibit-password
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+PubkeyAuthentication yes
+KbdInteractiveAuthentication no
+KerberosAuthentication no
+GSSAPIAuthentication no
+UsePAM yes
+
+PrintMotd no
+X11Forwarding no
+AllowTcpForwarding no
+AllowAgentForwarding no
+PermitTunnel no
+StrictModes yes
+MaxAuthTries 3
+MaxSessions 10
+ClientAliveInterval 300
+ClientAliveCountMax 0
+
+AcceptEnv LANG LC_*
+Subsystem       sftp    /usr/lib/openssh/sftp-server
+
+# Ensure that the file system ownership and permissions are secure.
+# Use the following commands if needed:
+# sudo chown root:root /etc/ssh/sshd_config
+# sudo chmod 600 /etc/ssh/sshd_config
