@@ -19,20 +19,34 @@ wget -qO /etc/ssh/sshd_config https://raw.githubusercontent.com/fractalcounty/OM
 echo "Setting proper permissions for /etc/ssh/sshd_config..."
 chmod 600 /etc/ssh/sshd_config || error_exit "Failed to set permissions for /etc/ssh/sshd_config."
 
-# Prompt the user for the public SSH key
-read -p "Please paste your public SSH key: " pubkey
-
 # Ensure the ~/.ssh directory exists
 echo "Ensuring ~/.ssh directory exists..."
 mkdir -p ~/.ssh || error_exit "Failed to create ~/.ssh directory."
 
-# Replace the contents of the authorized_keys file with the new public key
-echo "Updating ~/.ssh/authorized_keys with the provided key..."
-echo "$pubkey" > ~/.ssh/authorized_keys || error_exit "Failed to write to ~/.ssh/authorized_keys."
-
 # Set proper permissions for authorized_keys
 echo "Setting proper permissions for ~/.ssh/authorized_keys..."
+touch ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys || error_exit "Failed to set permissions for ~/.ssh/authorized_keys."
+
+# Prompt the user if they would like to add a public SSH key
+read -p "Would you like to add a public SSH key? (y/n): " add_key
+
+if [ "$add_key" == "y" ]; then
+    # Prompt the user for the public SSH key
+    read -p "Please paste your public SSH key: " pubkey
+
+    # Append the provided public key to the authorized_keys file
+    echo "Appending the provided key to ~/.ssh/authorized_keys..."
+    
+    # Ensure there's a newline before appending the new key
+    if [ -s ~/.ssh/authorized_keys ]; then
+        echo "" >> ~/.ssh/authorized_keys
+    fi
+    
+    echo "$pubkey" >> ~/.ssh/authorized_keys || error_exit "Failed to append to ~/.ssh/authorized_keys."
+else
+    echo "No new SSH key will be added."
+fi
 
 # Prompt the user to restart the SSH service
 read -p "Would you like to restart the SSH service now? (y/n): " restart_ssh
