@@ -54,8 +54,10 @@ if [ "$restart_ssh" == "y" ]; then
     echo "Restarting ssh service..."
     systemctl restart ssh || error_exit "Failed to restart ssh service."
     echo "SSH service restarted successfully."
+    systemctl restart sshd || error_exit "Failed to restart sshd service."
+    echo "SSHD service restarted successfully."
 else
-    echo "Please remember to restart the SSH service later to apply changes."
+    echo "Please remember to restart SSH services later to apply changes."
 fi
 
 echo "Script completed successfully."
