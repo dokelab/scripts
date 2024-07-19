@@ -14,10 +14,9 @@ UsePAM yes
 
 PrintMotd no
 X11Forwarding no
-AllowTcpForwarding no
-AllowAgentForwarding no
-PermitTunnel no
-StrictModes yes
+AllowTcpForwarding yes
+AllowAgentForwarding yes
+PermitTunnel yes
 MaxAuthTries 3
 MaxSessions 10
 ClientAliveInterval 300
