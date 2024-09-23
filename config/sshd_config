@@ -17,7 +17,7 @@ X11Forwarding no
 AllowTcpForwarding yes
 AllowAgentForwarding yes
 PermitTunnel yes
-MaxAuthTries 3
+MaxAuthTries 6
 MaxSessions 10
 ClientAliveInterval 300
 ClientAliveCountMax 0
